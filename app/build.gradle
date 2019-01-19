@@ -67,4 +67,13 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxJavaVersion"
+
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:$rootProject.androidLifeCycle"
+    implementation "android.arch.lifecycle:common-java8:$rootProject.androidLifeCycle"
+    implementation "android.arch.lifecycle:reactivestreams:$rootProject.androidLifeCycle"
+
+    //Anko lib
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.0"
 }

@@ -33,4 +33,6 @@ ext {
     rxAndroidVersion = "2.0.1"
     retrofitVersion = "2.3.0"
     retrofitAdapterVersion = "1.0.0"
+    ankoCorutines = "0.10.7"
+    androidLifeCycle = "1.1.1"
 }
