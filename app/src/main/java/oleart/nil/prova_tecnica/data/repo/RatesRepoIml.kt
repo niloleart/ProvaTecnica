@@ -1,4 +1,4 @@
-package oleart.nil.prova_tecnica.data
+package oleart.nil.prova_tecnica.data.repo
 
 import oleart.nil.prova_tecnica.data.api.RatesApi
 import oleart.nil.prova_tecnica.domain.business.rates.Rate

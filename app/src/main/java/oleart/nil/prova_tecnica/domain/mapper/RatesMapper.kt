@@ -13,9 +13,9 @@ class RatesMapper @Inject constructor() : GeneralMapper<MutableList<Rate>, Mutab
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun reverseMap(value: MutableList<RateDto>): MutableList<Rate> {
+    override fun reverseMap(rateDtoList: MutableList<RateDto>): MutableList<Rate> {
         var list = mutableListOf<Rate>()
-        for (rateDto in value) {
+        for (rateDto in rateDtoList) {
             list.add(addRate(rateDto))
         }
         return list

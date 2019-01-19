@@ -8,6 +8,7 @@ import okhttp3.Cache
 import okhttp3.logging.HttpLoggingInterceptor
 import oleart.nil.prova_tecnica.BuildConfig
 import oleart.nil.prova_tecnica.data.api.RatesApi
+import oleart.nil.prova_tecnica.data.api.TransactionsApi
 import oleart.nil.prova_tecnica.di.NamedProperties
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -75,6 +76,12 @@ class NetworkModule {
     @Singleton
     internal fun provideRatesApi(retrofit: Retrofit): RatesApi {
         return retrofit.create(RatesApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    internal fun proveTransactionsApi(retrofit: Retrofit) : TransactionsApi {
+        return retrofit.create(TransactionsApi::class.java)
     }
 
 }

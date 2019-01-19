@@ -1,4 +1,4 @@
-package oleart.nil.prova_tecnica.domain
+package oleart.nil.prova_tecnica.domain.interactors
 
 import oleart.nil.prova_tecnica.domain.business.rates.Rate
 import oleart.nil.prova_tecnica.domain.business.rates.RateDto
