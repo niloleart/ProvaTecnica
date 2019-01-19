@@ -1,8 +1,8 @@
 package oleart.nil.prova_tecnica
 
 import android.arch.lifecycle.Observer
+import oleart.nil.prova_tecnica.domain.business.products.Product
 import oleart.nil.prova_tecnica.domain.business.rates.Rate
-import oleart.nil.prova_tecnica.domain.business.transactions.Transaction
 import oleart.nil.prova_tecnica.general.GeneralActivity
 import oleart.nil.prova_tecnica.presentation.MainViewModel
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 class MainActivity : GeneralActivity() {
     @Inject lateinit var mainViewModel: MainViewModel
     private var mRates = mutableListOf<Rate>()
-    private var mTransactions = mutableListOf<Transaction>()
+    private var mProductList = mutableListOf<Product>()
 
     override fun initResources() {
         mainViewModel.getTransactions()
@@ -35,10 +35,9 @@ class MainActivity : GeneralActivity() {
             }
         })
 
-        mainViewModel.transactionsList.observe(this, Observer {
+        mainViewModel.productList.observe(this, Observer {
             if (it != null) {
-                mTransactions = it.toMutableList()
-                showToast(mTransactions[0].product)
+                mProductList = it.toMutableList()
             }
         })
     }
