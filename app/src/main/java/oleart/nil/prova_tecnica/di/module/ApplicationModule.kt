@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
+import oleart.nil.prova_tecnica.data.RatesRepoIml
+import oleart.nil.prova_tecnica.domain.business.rates.RatesRepo
 import javax.inject.Singleton
 
 @Module
@@ -42,11 +44,11 @@ class ApplicationModule {
         return context.resources
     }
 
-//    @Provides
-//    @Singleton
-//    internal fun provideApplicationsRepo(repo : ApplicationsRepoImpl): ApplicationsRepo {
-//        return repo
-//    }
+    @Provides
+    @Singleton
+    internal fun provideRatesRepo(repo : RatesRepoIml): RatesRepo {
+        return repo
+    }
 
 
 }

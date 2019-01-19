@@ -10,14 +10,14 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "oleart.nil.prova_tecnica"
-        minSdkVersion 28
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //TODO add url
-        buildConfigField "String", "WB_BASE_SERVICE", "\"https://.../\""
+        buildConfigField "String", "WB_BASE_SERVICE", "\"http://quiet-stone-2094.herokuapp.com/\""
     }
     buildTypes {
         release {

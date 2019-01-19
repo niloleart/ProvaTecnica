@@ -7,8 +7,10 @@ import okhttp3.OkHttpClient
 import okhttp3.Cache
 import okhttp3.logging.HttpLoggingInterceptor
 import oleart.nil.prova_tecnica.BuildConfig
+import oleart.nil.prova_tecnica.data.api.RatesApi
 import oleart.nil.prova_tecnica.di.NamedProperties
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -63,16 +65,16 @@ class NetworkModule {
                         httpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(xmlConverterFactory)
+                .addConverterFactory(GsonConverterFactory.create())
 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient)
                 .build()
     }
 
-//    @Provides
-//    @Singleton
-//    internal fun provideApplicationsApi(retrofit: Retrofit): ApplicationsApi {
-//        return retrofit.create(ApplicationsApi::class.java)
-//    }
+    @Provides
+    @Singleton
+    internal fun provideRatesApi(retrofit: Retrofit): RatesApi {
+        return retrofit.create(RatesApi::class.java)
+    }
 
 }
