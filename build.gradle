@@ -5,6 +5,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://jitpack.io'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
@@ -19,6 +22,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+        }
     }
 }
 
@@ -27,6 +33,7 @@ task clean(type: Delete) {
 }
 
 ext {
+    supportGoogleLib = "27.1.0"
     daggerVersion = "2.15"
     okhttpVersion = "3.9.0"
     rxJavaVersion = "2.1.0"

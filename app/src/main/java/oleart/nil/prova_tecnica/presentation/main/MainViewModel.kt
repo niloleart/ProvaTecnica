@@ -1,4 +1,4 @@
-package oleart.nil.prova_tecnica.presentation
+package oleart.nil.prova_tecnica.presentation.main
 
 import android.arch.lifecycle.MutableLiveData
 import oleart.nil.prova_tecnica.domain.business.products.Product

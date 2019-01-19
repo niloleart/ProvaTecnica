@@ -1,7 +1,7 @@
 package oleart.nil.prova_tecnica.di.component
 
 import dagger.Component
-import oleart.nil.prova_tecnica.MainActivity
+import oleart.nil.prova_tecnica.presentation.main.MainActivity
 import oleart.nil.prova_tecnica.di.module.ApplicationModule
 import oleart.nil.prova_tecnica.di.module.NetworkModule
 import oleart.nil.prova_tecnica.general.BaseApplication
