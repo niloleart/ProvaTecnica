@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Prova-Tecnica</string>
+    <string name="selected_spinner">Selected Product:&#160;</string>
+    <string name="first_spinner">Select a Product</string>
+    <string name="total">TOTAL:&#160;</string>
+    <string name="transactions">&#160;transactions</string>
 </resources>

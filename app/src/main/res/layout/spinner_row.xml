@@ -7,13 +7,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView
-            android:padding="20dp"
-            style="@style/NormalText"
-            android:text="Patata"
-            android:id="@+id/spinnerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_alignParentStart="true"
+                android:padding="20dp"
+                style="@style/ResultText"
+                android:id="@+id/spinnerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_alignParentEnd="true"
+                android:padding="20dp"
+                style="@style/DetailText"
+                android:id="@+id/spinnerTextTransactions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
     <View android:background="@color/divider"
           android:layout_width="match_parent"

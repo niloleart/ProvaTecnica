@@ -26,6 +26,7 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var adapter :TransactionsAdapter
     private var manager : LinearLayoutManager = LinearLayoutManager(baseContext)
     var spinnerTitles : MutableList<String> = mutableListOf<String>("Select a Product")
+    var spinnerTransactions : MutableList<String> = mutableListOf<String>("")
     var mFirstTime : Boolean = true
     var mSelectedProduct : Product? = null
     var dataAdapter : ArrayAdapter<String>? = null
@@ -33,7 +34,7 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
 
 
     override fun initResources() {
-        dataAdapter =  ArrayAdapter(this,  R.layout.spinner_row, R.id.spinnerText, spinnerTitles)
+        dataAdapter =  SpinnerAdapter(this,  R.layout.spinner_row, spinnerTitles, spinnerTransactions)
         spinner.adapter = dataAdapter
         setAdapter()
         clicks(mFirstTime)
@@ -61,7 +62,10 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
         mainViewModel.productList.observe(this, Observer {
             if (it != null) {
                 mProductList = it.toMutableList()
-                for (product in mProductList) spinnerTitles.add(product.product)
+                for (product in mProductList) {
+                    spinnerTitles.add(product.product)
+                    spinnerTransactions.add(product.transaction?.size.toString())
+                }
 //                dataAdapter = ArrayAdapter<String>(this, R.layout.spinner_row, R.id.spinnerText, spinnerTitles)
                 dataAdapter?.notifyDataSetChanged()
                 spinner.adapter = dataAdapter
@@ -76,7 +80,8 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
                 if (!isFirsTime) {
                     try {
                         mSelectedProduct= mProductList[position-1]
-                        resultText.text ="TOTAL: " + mSelectedProduct?.transaction?.let { computeResult(it) } + " €"
+                        resultText.text =getString(R.string.total) + mSelectedProduct?.transaction?.let { computeResult(it) } + " €"
+//                        spinner.spinnerText.text = getString(R.string.selected_spinner) + spinnerTitles[position]
                         buttonParentLayout.visibility = View.VISIBLE
                     } catch (e : Exception) {
                         mSelectedProduct = null

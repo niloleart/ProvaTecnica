@@ -8,12 +8,10 @@
         tools:context=".presentation.main.MainActivity">
 
     <android.support.v7.widget.Toolbar
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/spinner_gradient"
             android:minHeight="?attr/actionBarSize">
 
         <LinearLayout
@@ -43,7 +41,7 @@
 
         <android.support.v7.widget.RecyclerView
                 android:clipToPadding="false"
-                android:paddingBottom="40dp"
+                android:paddingBottom="95dp"
                 android:nestedScrollingEnabled="false"
                 android:id="@+id/mainRV"
                 app:layout_constraintBottom_toBottomOf="parent"
