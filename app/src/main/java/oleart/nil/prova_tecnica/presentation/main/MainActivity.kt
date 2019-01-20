@@ -77,6 +77,8 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
     private fun clicks(isFirsTime : Boolean) {
         spinner?.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == 0) mainRV.visibility = View.GONE
+                else mainRV.visibility = View.VISIBLE
                 if (!isFirsTime) {
                     try {
                         mSelectedProduct= mProductList[position-1]
