@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="general_padding">24dp</dimen>
+    <dimen name="intra_text_margin">10dp</dimen>
+    <dimen name="text_title">18sp</dimen>
+    <dimen name="text_normal">14sp</dimen>
+    <dimen name="text_big">20sp</dimen>
+
+    <dimen name="button_v_margin">10dp</dimen>
+    <dimen name="button_h_margin">70dp</dimen>
+</resources>

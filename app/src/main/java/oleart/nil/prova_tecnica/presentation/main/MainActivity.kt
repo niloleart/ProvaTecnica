@@ -18,27 +18,23 @@ import java.math.RoundingMode
 import javax.inject.Inject
 
 class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
+
     val CURRENCY_EU = "EUR"
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-
     @Inject lateinit var mainViewModel: MainViewModel
     private var mRates = mutableListOf<Rate>()
     private var mProductList = mutableListOf<Product>()
     private lateinit var adapter :TransactionsAdapter
     private var manager : LinearLayoutManager = LinearLayoutManager(baseContext)
-    var spinnerTitles : MutableList<String> = mutableListOf<String>("")
+    var spinnerTitles : MutableList<String> = mutableListOf<String>("Select a Product")
     var mFirstTime : Boolean = true
     var mSelectedProduct : Product? = null
+    var dataAdapter : ArrayAdapter<String>? = null
+
 
 
     override fun initResources() {
+        dataAdapter =  ArrayAdapter(this,  R.layout.spinner_row, R.id.spinnerText, spinnerTitles)
+        spinner.adapter = dataAdapter
         setAdapter()
         clicks(mFirstTime)
         mainViewModel.getTransactions()
@@ -59,7 +55,6 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
         mainViewModel.ratesList.observe(this, Observer {
             if (it != null) {
                 mRates = it.toMutableList()
-//                showToast(mRates[0].outCurr)
             }
         })
 
@@ -67,7 +62,8 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
             if (it != null) {
                 mProductList = it.toMutableList()
                 for (product in mProductList) spinnerTitles.add(product.product)
-                val dataAdapter = ArrayAdapter<String>(this, R.layout.spinner_row, R.id.spinnerText, spinnerTitles)
+//                dataAdapter = ArrayAdapter<String>(this, R.layout.spinner_row, R.id.spinnerText, spinnerTitles)
+                dataAdapter?.notifyDataSetChanged()
                 spinner.adapter = dataAdapter
                 clicks(false)
             }
@@ -80,23 +76,24 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
                 if (!isFirsTime) {
                     try {
                         mSelectedProduct= mProductList[position-1]
+                        resultText.text ="TOTAL: " + mSelectedProduct?.transaction?.let { computeResult(it) } + " €"
+                        buttonParentLayout.visibility = View.VISIBLE
                     } catch (e : Exception) {
                         mSelectedProduct = null
                     }
-                    mSelectedProduct?.product?.let { showToast(it) }
                     mSelectedProduct?.transaction?.let { adapter.setList(it) }
                     adapter.notifyDataSetChanged()
-                    resultText.text = mSelectedProduct?.transaction?.let { computeResult(it) }
                 }
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                buttonParentLayout.visibility = View.GONE
             }
         }
     }
 
+
+    //private functions
     private fun setAdapter() {
         mainRV.visibility = View.VISIBLE
         manager = LinearLayoutManager(this)
@@ -120,7 +117,7 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
     }
 
 
-    fun convert(transaction: ProductTransaction): Double {
+    private fun convert(transaction: ProductTransaction): Double {
         val euroRates = getAllEuro()
         val euroRatesIn = getAllInCurr(euroRates)
         val ratesIn = getAllInCurr(mRates)
@@ -157,7 +154,7 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
     }
 
 
-    fun getAllEuro(): MutableList<Rate> {
+    private fun getAllEuro(): MutableList<Rate> {
         var list = mutableListOf<Rate>()
         for(rate in mRates) {
             if (rate.outCurr == CURRENCY_EU) list.add(rate)
@@ -176,4 +173,11 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
     private fun roundHalfEven(double : Double) : Double {
         return BigDecimal(double).setScale(2, RoundingMode.HALF_EVEN).toDouble()
     }
+
+    //not used
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {}
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
+
 }
+
