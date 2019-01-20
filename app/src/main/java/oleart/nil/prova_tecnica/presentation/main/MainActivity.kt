@@ -112,11 +112,11 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
         var result : Double = 0.0
         for (transaction in transactionList) {
             result += when(transaction.currency) {
-                CURRENCY_EU -> transaction.amount
+                CURRENCY_EU -> roundHalfEven(transaction.amount)
                 else-> convert(transaction)
             }
         }
-        return result.toString()
+        return roundHalfEven(result).toString()
     }
 
 
