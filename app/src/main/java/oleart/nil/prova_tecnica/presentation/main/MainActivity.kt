@@ -77,13 +77,15 @@ class MainActivity : GeneralActivity(), AdapterView.OnItemSelectedListener {
     private fun clicks(isFirsTime : Boolean) {
         spinner?.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == 0) mainRV.visibility = View.GONE
+                if (position == 0) {
+                    mainRV.visibility = View.GONE
+                    buttonParentLayout.visibility = View.GONE
+                }
                 else mainRV.visibility = View.VISIBLE
                 if (!isFirsTime) {
                     try {
                         mSelectedProduct= mProductList[position-1]
                         resultText.text =getString(R.string.total) + mSelectedProduct?.transaction?.let { computeResult(it) } + " €"
-//                        spinner.spinnerText.text = getString(R.string.selected_spinner) + spinnerTitles[position]
                         buttonParentLayout.visibility = View.VISIBLE
                     } catch (e : Exception) {
                         mSelectedProduct = null
